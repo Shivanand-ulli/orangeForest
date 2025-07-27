@@ -28,7 +28,7 @@ public class Card : MonoBehaviour
         // Reference of the button
         button = GetComponent<Button>();
         if(button != null)
-            button.OnClick.AddListener(OnCardClik);
+            button.onClick.AddListener(OnCardClik);
     }
 
     void Start()
@@ -47,7 +47,7 @@ public class Card : MonoBehaviour
     // Button listener func to the flip card
     public void OnCardClik()
     {
-        if (isMatched || isFliped) return;
+        if (isMatched || isFlipped) return;
 
         CardFlip();
         GridManager.Instance.CardRevealed(this);
@@ -59,7 +59,7 @@ public class Card : MonoBehaviour
     {
         isFlipped = !isFlipped;
 
-        if (isFliping)
+        if (isFlipped)
         {
             ShowFront();
         }
