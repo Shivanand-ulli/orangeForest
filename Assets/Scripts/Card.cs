@@ -34,6 +34,7 @@ public class Card : MonoBehaviour
         if (isMatching || isFliping) return;
 
         CardFlip();
+        GridManager.Instance.CardRevealed(this);
     }
 
     public void CardFlip()
@@ -65,6 +66,9 @@ public class Card : MonoBehaviour
     public void CardMatch()
     {
         isMatching = true;
+        GetComponent<Button>().interactable = false;
+        backContainer.SetActive(false);
+        frontContainer.SetActive(false);
     }
 
 }

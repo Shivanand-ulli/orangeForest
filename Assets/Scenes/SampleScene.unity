@@ -122,6 +122,82 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &178302212
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 178302213}
+  - component: {fileID: 178302215}
+  - component: {fileID: 178302214}
+  m_Layer: 5
+  m_Name: bg
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &178302213
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 178302212}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 340795401}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &178302214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 178302212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 38f124334f61977469ac4007f4d73cd7, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &178302215
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 178302212}
+  m_CullTransparentMesh: 1
 --- !u!1 &217106097
 GameObject:
   m_ObjectHideFlags: 0
@@ -283,6 +359,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 178302213}
   - {fileID: 1314612307}
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -388,8 +465,9 @@ GameObject:
   - component: {fileID: 1314612310}
   - component: {fileID: 1314612309}
   - component: {fileID: 1314612308}
+  - component: {fileID: 1314612311}
   m_Layer: 5
-  m_Name: CardContainer
+  m_Name: GridPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -408,12 +486,12 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 340795401}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1600, y: 900}
+  m_SizeDelta: {x: 1600, y: 800}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1314612308
 MonoBehaviour:
@@ -430,15 +508,15 @@ MonoBehaviour:
   m_Padding:
     m_Left: 0
     m_Right: 0
-    m_Top: 0
+    m_Top: 100
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_StartCorner: 0
+  m_StartCorner: 1
   m_StartAxis: 0
-  m_CellSize: {x: 100, y: 100}
-  m_Spacing: {x: 10, y: 10}
+  m_CellSize: {x: 150, y: 150}
+  m_Spacing: {x: 40, y: 40}
   m_Constraint: 1
-  m_ConstraintCount: 2
+  m_ConstraintCount: 6
 --- !u!114 &1314612309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -452,7 +530,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -477,3 +555,39 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1314612306}
   m_CullTransparentMesh: 1
+--- !u!114 &1314612311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1314612306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b5b8f4808d0fab4f855558d14592807, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardPrefab: {fileID: 1732780625583537156, guid: e97998d25903f8b4c8c2053ec3a9df9f, type: 3}
+  gridParent: {fileID: 1314612307}
+  gridLayoutGroup: {fileID: 1314612308}
+  frontSprites:
+  - {fileID: 21300000, guid: 5323af33de7e5294a9ba2e38684a6b0e, type: 3}
+  - {fileID: 21300000, guid: bde8c3e23d912c844aa6f032578ef28c, type: 3}
+  - {fileID: 21300000, guid: e733aeaae5091dc44a2df1b9a02c7939, type: 3}
+  - {fileID: 21300000, guid: 484f86ec495873343bb36006b8725f67, type: 3}
+  - {fileID: 21300000, guid: 0c63b35bcea186849a4488943de83e9c, type: 3}
+  - {fileID: 21300000, guid: 7e0bf32c371eb674c8a424d7e063fbee, type: 3}
+  - {fileID: 21300000, guid: 7e0bf32c371eb674c8a424d7e063fbee, type: 3}
+  - {fileID: 21300000, guid: bde8c3e23d912c844aa6f032578ef28c, type: 3}
+  - {fileID: 21300000, guid: 0c63b35bcea186849a4488943de83e9c, type: 3}
+  - {fileID: 21300000, guid: 5323af33de7e5294a9ba2e38684a6b0e, type: 3}
+  - {fileID: 21300000, guid: 7e0bf32c371eb674c8a424d7e063fbee, type: 3}
+  - {fileID: 21300000, guid: 0c63b35bcea186849a4488943de83e9c, type: 3}
+  - {fileID: 21300000, guid: e733aeaae5091dc44a2df1b9a02c7939, type: 3}
+  - {fileID: 21300000, guid: 7e0bf32c371eb674c8a424d7e063fbee, type: 3}
+  - {fileID: 21300000, guid: 484f86ec495873343bb36006b8725f67, type: 3}
+  frontBg: {fileID: 21300000, guid: 63b9b39043d9f38418443a1596647ae3, type: 3}
+  backBg: {fileID: 21300000, guid: cff51f37ced0f8d4198eb0da54cc357c, type: 3}
+  backSign: {fileID: 21300000, guid: 5b9c47e552e576a4ca0c75cc0c519702, type: 3}
+  col: 6
+  row: 5
