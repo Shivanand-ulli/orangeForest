@@ -23,6 +23,7 @@ public class UIManager : MonoBehaviour
     private int matches = 0;
     private int score = 0;
     private bool soundSettingPanel = false;
+    private Animator UIAnimator;
 
     void OnEnable()
     {
@@ -46,6 +47,8 @@ public class UIManager : MonoBehaviour
 
         if (settingBtn != null)
             settingBtn.onClick.AddListener(ShowSoundSetting);
+
+        UIAnimator = GetComponent<Animator>();
     }
 
     public void ShowSoundSetting()
@@ -71,12 +74,14 @@ public class UIManager : MonoBehaviour
 
     public void ShowWinPanel()
     {
-        WinPanel.SetActive(true);
+        UIAnimator.SetBool("out", true);
         StartCoroutine(AnimateGameOverStatus());
     }
 
     IEnumerator AnimateGameOverStatus()
     {
+        yield return new WaitForSeconds(0.5f);
+        WinPanel.SetActive(true);
         yield return StartCoroutine(AnimateTextCount(0, turns, winPanelTurns));
         yield return StartCoroutine(AnimateTextCount(0, score, winPanelScore));
     }
