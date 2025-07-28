@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,6 +27,12 @@ public class GridManager : MonoBehaviour
     private List<Card> createdCards = new List<Card>();
     private Card firstCard;
     private Card secondCard;
+    private int totalMatchesRequired = 0;
+    private int currentMatch = 0;
+
+    public static event Action IncreaseTurns;
+    public static event Action IncreaseMatches;
+    public static event Action ShowWinPanel;
 
     void Awake()
     {
@@ -41,17 +49,16 @@ public class GridManager : MonoBehaviour
     {
         UpdateGridLayout(row, col);
 
-        // Clear old cards
+        // Clear existing cards
         foreach (Transform child in gridParent)
-        {
             Destroy(child.gameObject);
-        }
         createdCards.Clear();
 
         int totalCards = col * row;
         int pairCount = totalCards / 2;
+        totalMatchesRequired = pairCount;
 
-        // Select pairs of sprites
+        // Create pairs
         List<Sprite> selectedSprites = new List<Sprite>();
         for (int i = 0; i < pairCount; i++)
         {
@@ -73,27 +80,29 @@ public class GridManager : MonoBehaviour
 
     void UpdateGridLayout(int rows, int cols)
     {
-        float cellSize = 100f;
-        float spacing = 20f;
+        float parentWidth = gridParent.rect.width;
+        float parentHeight = gridParent.rect.height;
 
-        // Set based on known layouts
-        if (rows == 2 && cols == 2 || rows == 2 && cols == 3)
-        {
-            cellSize = 350f;
-        }
-        else if (rows == 5 && cols == 6)
-        {
-            cellSize = 150f;
-        }
+        // Define spacing percentage (can tweak)
+        float spacingPercent = 0.1f;
 
-        // Apply to grid layout
+        // Calculate cell size and spacing
+        float rawCellWidth = parentWidth / (cols + (cols - 1) * spacingPercent);
+        float rawCellHeight = parentHeight / (rows + (rows - 1) * spacingPercent);
+        float cellSize = Mathf.Min(rawCellWidth, rawCellHeight);
+
+        float spacingX = cellSize * spacingPercent;
+        float spacingY = cellSize * spacingPercent;
+
+        // Debug log for testing
+        Debug.Log($"Grid: {rows}x{cols}, Cell: {cellSize}, Spacing: {spacingX}");
+
+        // Apply to GridLayout
         gridLayoutGroup.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
         gridLayoutGroup.constraintCount = cols;
         gridLayoutGroup.cellSize = new Vector2(cellSize, cellSize);
-        gridLayoutGroup.spacing = new Vector2(spacing, spacing);
+        gridLayoutGroup.spacing = new Vector2(spacingX, spacingY);
     }
-
-
 
     public void CardRevealed(Card card)
     {
@@ -110,12 +119,20 @@ public class GridManager : MonoBehaviour
 
     IEnumerator CheckMatch()
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.3f);
 
-        if (firstCard.frontSign.sprite == secondCard.frontSign.sprite)
+        bool isMatch = firstCard.frontSign.sprite == secondCard.frontSign.sprite;
+
+        if (isMatch)
         {
             firstCard.CardMatch();
             secondCard.CardMatch();
+            IncreaseMatches?.Invoke();
+            currentMatch++;
+            if (currentMatch == totalMatchesRequired)
+            {
+                StartCoroutine(ShowWinWithDelay());
+            }
         }
         else
         {
@@ -123,18 +140,23 @@ public class GridManager : MonoBehaviour
             secondCard.CardFlip();
         }
 
+        IncreaseTurns?.Invoke();
         firstCard = null;
         secondCard = null;
+    }
+
+    IEnumerator ShowWinWithDelay()
+    {
+        yield return new WaitForSeconds(1);
+        ShowWinPanel?.Invoke();
     }
 
     void ShuffleSprites(List<Sprite> sprites)
     {
         for (int i = 0; i < sprites.Count; i++)
         {
-            Sprite temp = sprites[i];
-            int rand = Random.Range(i, sprites.Count);
-            sprites[i] = sprites[rand];
-            sprites[rand] = temp;
+            int rand = UnityEngine.Random.Range(i, sprites.Count);
+            (sprites[i], sprites[rand]) = (sprites[rand], sprites[i]);
         }
     }
 }
