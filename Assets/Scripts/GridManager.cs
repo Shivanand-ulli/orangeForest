@@ -29,6 +29,7 @@ public class GridManager : MonoBehaviour
     private Card secondCard;
     private int totalMatchesRequired = 0;
     private int currentMatch = 0;
+    int totalCards;
 
     public static event Action IncreaseTurns;
     public static event Action IncreaseMatches;
@@ -40,11 +41,6 @@ public class GridManager : MonoBehaviour
         else Destroy(gameObject);
     }
 
-    void Start()
-    {
-        GenerateGrid();
-    }
-
     public void GenerateGrid()
     {
         UpdateGridLayout(row, col);
@@ -54,7 +50,7 @@ public class GridManager : MonoBehaviour
             Destroy(child.gameObject);
         createdCards.Clear();
 
-        int totalCards = col * row;
+        totalCards = col * row;
         int pairCount = totalCards / 2;
         totalMatchesRequired = pairCount;
 
@@ -68,14 +64,41 @@ public class GridManager : MonoBehaviour
 
         ShuffleSprites(selectedSprites);
 
-        // Instantiate cards
+        StartCoroutine(ShowCardSequentially(selectedSprites));
+    }
+
+    IEnumerator ShowCardSequentially(List<Sprite> sprites)
+    {
         for (int i = 0; i < totalCards; i++)
         {
             GameObject cardGO = Instantiate(cardPrefab, gridParent);
             Card card = cardGO.GetComponent<Card>();
-            card.SetCardFace(frontBg, selectedSprites[i]);
+            card.SetCardFace(frontBg, sprites[i]);
             createdCards.Add(card);
+
+            // Add and setup CanvasGroup
+            CanvasGroup cg = cardGO.GetComponent<CanvasGroup>();
+            if (cg == null) cg = cardGO.AddComponent<CanvasGroup>();
+            cg.alpha = 0f;
+
+            StartCoroutine(FadeInCard(cg, 0.3f));
+
+            yield return new WaitForSeconds(0.05f); 
         }
+    }
+
+
+    IEnumerator FadeInCard(CanvasGroup canvasGroup, float duration)
+    {
+
+        float elapsed = 0f;
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            canvasGroup.alpha = Mathf.Lerp(0f, 1f, elapsed / duration);
+            yield return null;
+        }
+        canvasGroup.alpha = 1f;
     }
 
     void UpdateGridLayout(int rows, int cols)
