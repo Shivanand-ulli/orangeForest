@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
@@ -101,4 +102,16 @@ public class UIManager : MonoBehaviour
             yield return null;
         }
     }
+
+    public void PlayAgain()
+    {
+        int currentScene = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentScene);
+    }
+
+    public void Exit()
+    {
+        SceneManager.LoadScene(0);
+    }
 }
+
