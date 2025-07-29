@@ -40,6 +40,12 @@ public class GridManager : MonoBehaviour
         else Destroy(gameObject);
     }
 
+    void Start()
+    {
+        col = PlayerPrefs.GetInt("Columns");
+        row = PlayerPrefs.GetInt("Rows");   
+    }
+
     public void GenerateGrid()
     {
         UpdateGridLayout(row, col);
