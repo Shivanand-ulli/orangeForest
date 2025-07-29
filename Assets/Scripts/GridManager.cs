@@ -147,7 +147,7 @@ public class GridManager : MonoBehaviour
 
     IEnumerator CheckMatch()
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.5f);
 
         bool isMatch = firstCard.frontSign.sprite == secondCard.frontSign.sprite;
 

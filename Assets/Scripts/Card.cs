@@ -19,6 +19,7 @@ public class Card : MonoBehaviour
     // Flags to check
     private bool isFlipped = false;
     private bool isMatched = false;
+    private Animator anim;
     
     private Button button;  
 
@@ -33,7 +34,7 @@ public class Card : MonoBehaviour
     void Start()
     {
         // Initially show backface of the card
-        ShowBack();
+        anim = GetComponent<Animator>();
     }
 
     // Set the front card face and image
@@ -60,11 +61,11 @@ public class Card : MonoBehaviour
 
         if (isFlipped)
         {
-            ShowFront();
+            anim.SetBool("FlipFront",isFlipped);
         }
         else
         {
-            ShowBack();
+            anim.SetBool("FlipFront",isFlipped);
         }
     }
 
@@ -95,6 +96,15 @@ public class Card : MonoBehaviour
     private IEnumerator HideMatchCard()
     {
         yield return new WaitForSeconds(0.3f);
+        Debug.Log("You are in this point");
+        if (backContainer != null && frontContainer != null)
+        {
+            Debug.Log("The container is null");
+        }
+        if (anim != null)
+        {
+            anim.enabled = false;
+        }
         backContainer.SetActive(false);
         frontContainer.SetActive(false);
     }
