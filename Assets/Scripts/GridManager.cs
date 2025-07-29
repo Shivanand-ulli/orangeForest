@@ -18,7 +18,6 @@ public class GridManager : MonoBehaviour
     public List<Sprite> frontSprites;
     public Sprite frontBg;
     public Sprite backBg;
-    public Sprite backSign;
 
     [Header("Layout")]
     public int col = 6;

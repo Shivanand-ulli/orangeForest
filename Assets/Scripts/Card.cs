@@ -15,7 +15,6 @@ public class Card : MonoBehaviour
     [Header("Back Side")]
     public GameObject backContainer;
     public Image backImage;
-    public Image backSign;
 
     // Flags to check
     private bool isFlipped = false;
