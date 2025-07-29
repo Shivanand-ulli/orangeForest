@@ -89,24 +89,7 @@ public class Card : MonoBehaviour
     {
         isMatched = true;
         button.interactable = false;
-        StartCoroutine(HideMatchCard());
-    }
-
-    // Hide matched card using coroutine
-    private IEnumerator HideMatchCard()
-    {
-        yield return new WaitForSeconds(0.3f);
-        Debug.Log("You are in this point");
-        if (backContainer != null && frontContainer != null)
-        {
-            Debug.Log("The container is null");
-        }
-        if (anim != null)
-        {
-            anim.enabled = false;
-        }
-        backContainer.SetActive(false);
-        frontContainer.SetActive(false);
+        anim.SetTrigger("Dissappear");
     }
 
 }
