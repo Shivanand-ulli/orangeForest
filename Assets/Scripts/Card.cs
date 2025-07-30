@@ -20,14 +20,15 @@ public class Card : MonoBehaviour
     private bool isFlipped = false;
     private bool isMatched = false;
     private Animator anim;
-    
-    private Button button;  
+
+    private Button button;
+    public ParticleSystem sparkelEffect;
 
     void Awake()
     {
         // Reference of the button
         button = GetComponent<Button>();
-        if(button != null)
+        if (button != null)
             button.onClick.AddListener(OnCardClik);
     }
 
@@ -61,11 +62,11 @@ public class Card : MonoBehaviour
 
         if (isFlipped)
         {
-            anim.SetBool("FlipFront",isFlipped);
+            anim.SetBool("FlipFront", isFlipped);
         }
         else
         {
-            anim.SetBool("FlipFront",isFlipped);
+            anim.SetBool("FlipFront", isFlipped);
         }
     }
 
@@ -92,4 +93,8 @@ public class Card : MonoBehaviour
         anim.SetTrigger("Dissappear");
     }
 
+    public void PlayEffect()
+    {
+        sparkelEffect.Play();
+    }
 }
