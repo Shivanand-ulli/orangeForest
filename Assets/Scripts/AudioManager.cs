@@ -24,9 +24,6 @@ public class AudioManager : MonoBehaviour
         }
         else
             Destroy(gameObject);
-
-        musicSource.mute = GetMusicState();
-        sfxSource.mute = GetSfxState();
     }
 
     public void PlayMusic(int id)

@@ -23,6 +23,9 @@ public class Settings : MonoBehaviour
         sfxOn?.onClick.AddListener(() => SetSfxMuted(true));
         sfxOff?.onClick.AddListener(() => SetSfxMuted(false));
 
+        AudioManager.Instance.musicSource.mute = AudioManager.GetMusicState();
+        AudioManager.Instance.sfxSource.mute = AudioManager.GetSfxState();
+
         // Updating button visible states
         UpdateMusicButtonState(AudioManager.GetMusicState());
         UpdateSfxButtonState(AudioManager.GetSfxState());
