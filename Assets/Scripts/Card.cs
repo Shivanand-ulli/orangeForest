@@ -69,6 +69,20 @@ public class Card : MonoBehaviour
         }
     }
 
+    // Show front face of the card
+    public void ShowFront()
+    {
+        backContainer.SetActive(false);
+        frontContainer.SetActive(true);
+    }
+
+    // Show back face of the card
+    public void ShowBack()
+    {
+        backContainer.SetActive(true);
+        frontContainer.SetActive(false);
+    }
+
     /* Turn off the button interaction and 
      StartCoroutine after both card matches.*/
     public void CardMatch()

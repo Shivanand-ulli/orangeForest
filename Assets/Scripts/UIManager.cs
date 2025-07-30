@@ -23,7 +23,6 @@ public class UIManager : MonoBehaviour
     private int turns = 0;
     private int matches = 0;
     private int score = 0;
-    private bool soundSettingPanel = false;
     private Animator UIAnimator;
 
     void OnEnable()
@@ -45,17 +44,7 @@ public class UIManager : MonoBehaviour
         matchesTxt.text = "0";
         scoreTxt.text = "0";
         WinPanel.SetActive(false);
-
-        if (settingBtn != null)
-            settingBtn.onClick.AddListener(ShowSoundSetting);
-
         UIAnimator = GetComponent<Animator>();
-    }
-
-    public void ShowSoundSetting()
-    {
-        soundSettingPanel = !soundSettingPanel;
-        settingPanel.SetActive(soundSettingPanel);
     }
 
     public void SetTurns()

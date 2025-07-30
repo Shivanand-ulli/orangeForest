@@ -24,6 +24,9 @@ public class AudioManager : MonoBehaviour
         }
         else
             Destroy(gameObject);
+
+        musicSource.mute = GetMusicState();
+        sfxSource.mute = GetSfxState();
     }
 
     public void PlayMusic(int id)
@@ -49,12 +52,14 @@ public class AudioManager : MonoBehaviour
     {
         musicSource.mute = isMuted;
         PlayerPrefs.SetInt(MUSIC_MUTE_KEY, isMuted ? 1 : 0);
+        PlayerPrefs.Save();
     }
 
     public void ToggleSfx(bool isMuted)
     {
         sfxSource.mute = isMuted;
         PlayerPrefs.SetInt(Sfx_MUTE_KEY, isMuted ? 1 : 0);
+        PlayerPrefs.Save();
     }
 
     public static bool GetMusicState() => PlayerPrefs.GetInt(MUSIC_MUTE_KEY, 0) == 1;

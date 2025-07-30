@@ -241,7 +241,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7399762471612900038}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1350915487545571037}
+        m_TargetAssemblyTypeName: Settings, Assembly-CSharp
+        m_MethodName: SetExtraPanel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Settings, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7399762471623624373
 GameObject:
   m_ObjectHideFlags: 0
@@ -385,7 +409,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6ef77b4e2c9440c4eb90c9c3467772ed, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 511b4b8ff10fd7c4a9c513ed78ad0088, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -448,6 +472,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7399762472404126540}
+  - component: {fileID: 1350915487545571037}
   m_Layer: 5
   m_Name: settings
   m_TagString: Untagged
@@ -478,6 +503,23 @@ RectTransform:
   m_AnchoredPosition: {x: -75, y: -55}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1350915487545571037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7399762472404126541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 828be66428534fb48b63ad2ab36672c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicOn: {fileID: 7399762473095755171}
+  musicOff: {fileID: 7399762472733886536}
+  sfxOn: {fileID: 7399762471159055250}
+  sfxOff: {fileID: 7399762471995888550}
+  extraSettingPanel: {fileID: 7399762472867686445}
 --- !u!1 &7399762472473851006
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,7 +663,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6ef77b4e2c9440c4eb90c9c3467772ed, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a52d090dfa4711145ab08351688162f0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -713,7 +755,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 8.0001, y: -114}
+  m_AnchoredPosition: {x: 8, y: -115}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &7399762473095755169
