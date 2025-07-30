@@ -82,6 +82,7 @@ public class UIManager : MonoBehaviour
     IEnumerator AnimateGameOverStatus()
     {
         yield return new WaitForSeconds(0.5f);
+        AudioManager.Instance.PlaySfx(3);
         WinPanel.SetActive(true);
         yield return StartCoroutine(AnimateTextCount(0, turns, winPanelTurns));
         yield return StartCoroutine(AnimateTextCount(0, score, winPanelScore));
@@ -112,6 +113,11 @@ public class UIManager : MonoBehaviour
     public void Exit()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void PlayButtonSfx()
+    {
+        AudioManager.Instance.PlaySfx(2);
     }
 }
 

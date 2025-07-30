@@ -47,7 +47,7 @@ public class Card : MonoBehaviour
     // Button listener func to the flip card
     public void OnCardClik()
     {
-        if (isMatched || isFlipped) return;
+        if (isMatched || isFlipped || !GridManager.Instance.CanReveal()) return;
 
         CardFlip();
         GridManager.Instance.CardRevealed(this);
@@ -67,20 +67,6 @@ public class Card : MonoBehaviour
         {
             anim.SetBool("FlipFront",isFlipped);
         }
-    }
-
-    // Show front face of the card
-    public void ShowFront()
-    {
-        backContainer.SetActive(false);
-        frontContainer.SetActive(true);
-    }
-
-    // Show back face of the card
-    public void ShowBack()
-    {
-        backContainer.SetActive(true);
-        frontContainer.SetActive(false);
     }
 
     /* Turn off the button interaction and 

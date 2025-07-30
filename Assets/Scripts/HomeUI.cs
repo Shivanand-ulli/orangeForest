@@ -15,6 +15,11 @@ public class HomeUI : MonoBehaviour
         Hard
     }
 
+    void Start()
+    {
+        AudioManager.Instance.PlayMusic(0);   
+    }
+
     public void GameScene()
     {
         SceneManager.LoadScene(1);
@@ -56,6 +61,9 @@ public class HomeUI : MonoBehaviour
         PlayerPrefs.SetInt("Rows", row);
     }
 
-
+    public void PlayButtonSfx()
+    {
+        AudioManager.Instance.PlaySfx(2);
+    }
 
 }

@@ -29,6 +29,7 @@ public class GridManager : MonoBehaviour
     private int totalMatchesRequired = 0;
     private int currentMatch = 0;
     int totalCards;
+    private bool canReveal = true;
 
     public static event Action IncreaseTurns;
     public static event Action IncreaseMatches;
@@ -38,12 +39,14 @@ public class GridManager : MonoBehaviour
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
+        AudioManager.Instance.musicSource.mute = false;
+        AudioManager.Instance.PlayMusic(1);
     }
 
     void Start()
     {
         col = PlayerPrefs.GetInt("Columns");
-        row = PlayerPrefs.GetInt("Rows");   
+        row = PlayerPrefs.GetInt("Rows");
     }
 
     public void GenerateGrid()
@@ -88,7 +91,7 @@ public class GridManager : MonoBehaviour
 
             StartCoroutine(FadeInCard(cg, 0.3f));
 
-            yield return new WaitForSeconds(0.05f); 
+            yield return new WaitForSeconds(0.05f);
         }
     }
 
@@ -134,6 +137,7 @@ public class GridManager : MonoBehaviour
 
     public void CardRevealed(Card card)
     {
+        if (!canReveal) return;
         if (firstCard == null)
         {
             firstCard = card;
@@ -141,6 +145,7 @@ public class GridManager : MonoBehaviour
         else if (secondCard == null)
         {
             secondCard = card;
+            canReveal = false;
             StartCoroutine(CheckMatch());
         }
     }
@@ -155,10 +160,12 @@ public class GridManager : MonoBehaviour
         {
             firstCard.CardMatch();
             secondCard.CardMatch();
+            AudioManager.Instance.PlaySfx(0);
             IncreaseMatches?.Invoke();
             currentMatch++;
             if (currentMatch == totalMatchesRequired)
             {
+                AudioManager.Instance.musicSource.Stop();
                 StartCoroutine(ShowWinWithDelay());
             }
         }
@@ -166,17 +173,20 @@ public class GridManager : MonoBehaviour
         {
             firstCard.CardFlip();
             secondCard.CardFlip();
+            AudioManager.Instance.PlaySfx(1);
         }
 
         IncreaseTurns?.Invoke();
         firstCard = null;
         secondCard = null;
+        canReveal = true;
     }
 
     IEnumerator ShowWinWithDelay()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         ShowWinPanel?.Invoke();
+        gameObject.SetActive(false);
     }
 
     void ShuffleSprites(List<Sprite> sprites)
@@ -186,5 +196,10 @@ public class GridManager : MonoBehaviour
             int rand = UnityEngine.Random.Range(i, sprites.Count);
             (sprites[i], sprites[rand]) = (sprites[rand], sprites[i]);
         }
+    }
+
+    public bool CanReveal()
+    {
+        return canReveal;
     }
 }
