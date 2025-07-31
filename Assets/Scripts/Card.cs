@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -36,6 +37,9 @@ public class Card : MonoBehaviour
     {
         // Initially show backface of the card
         anim = GetComponent<Animator>();
+        
+        // Coroutine to set particle size based on card width
+        StartCoroutine(AdjustParticleSize());
     }
 
     // Set the front card face and image
@@ -93,8 +97,24 @@ public class Card : MonoBehaviour
         anim.SetTrigger("Dissappear");
     }
 
+    // Play SparkelEffect when card disappear
     public void PlayEffect()
     {
         sparkelEffect.Play();
+    }
+
+    IEnumerator AdjustParticleSize()
+    {
+        yield return null;
+        RectTransform rt = GetComponent<RectTransform>();
+        float width = rt.rect.width;
+
+        float baseSize = 380;
+        float scaleFactor = width / baseSize;
+
+        if (sparkelEffect != null)
+        {
+            sparkelEffect.transform.localScale = new Vector3(scaleFactor, scaleFactor, scaleFactor);
+        }
     }
 }

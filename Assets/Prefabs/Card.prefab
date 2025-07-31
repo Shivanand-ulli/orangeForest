@@ -125,7 +125,7 @@ MonoBehaviour:
   frontSign: {fileID: 3898426891269345200}
   backContainer: {fileID: 3909894608706168014}
   backImage: {fileID: 1322298723196162114}
-  sparkelEffect: {fileID: 0}
+  sparkelEffect: {fileID: 5230591572782373636}
 --- !u!225 &3855111671479630355
 CanvasGroup:
   m_ObjectHideFlags: 0
