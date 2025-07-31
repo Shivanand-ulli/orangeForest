@@ -11,7 +11,7 @@ public class HomeUI : MonoBehaviour
     int row;
     int backBG;
     int score = 0;
-    public TextMeshProUGUI scoreTxt;
+    public TextMeshProUGUI scoreTxt; 
     public enum Mode
     {
         Easy,
@@ -27,26 +27,34 @@ public class HomeUI : MonoBehaviour
         scoreTxt.text = score.ToString(); 
     }
 
+    // Load the game scene
     public void GameScene()
     {
         SceneManager.LoadScene(1);
     }
 
 
-    // Modes Settings
+    // Difficulty Modes Settings
+
+    // 1.Easy Mode
     public void SetEasy()
     {
         SetGridSize(Mode.Easy);
     }
+
+    // 2.Medium Mode
     public void SetMedium()
     {
         SetGridSize(Mode.Medium);
     }
+
+    // 3.Hard Mode
     public void SetHard()
     {
         SetGridSize(Mode.Hard);
     }
 
+    // Set the Grid col,row and backBg save in PlayerPrefs
     void SetGridSize(Mode mode)
     {
         switch (mode)
@@ -72,6 +80,7 @@ public class HomeUI : MonoBehaviour
         PlayerPrefs.SetInt("BackBg", backBG);
     }
 
+    // Play button sfx
     public void PlayButtonSfx()
     {
         AudioManager.Instance.PlaySfx(2);
