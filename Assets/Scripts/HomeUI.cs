@@ -22,7 +22,7 @@ public class HomeUI : MonoBehaviour
     void Start()
     {
         AudioManager.Instance.PlayMusic(0);
-        int savedScore = PlayerPrefs.GetInt("Score");
+        int savedScore = PlayerPrefs.GetInt("Score",0);
         score += savedScore;
         scoreTxt.text = score.ToString(); 
     }

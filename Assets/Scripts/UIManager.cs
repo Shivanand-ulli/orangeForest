@@ -59,7 +59,10 @@ public class UIManager : MonoBehaviour
 
         score = matches * 10;
         scoreTxt.text = score.ToString();
-        PlayerPrefs.SetInt("Score", score);
+
+        int previousScore = PlayerPrefs.GetInt("Score", 0);
+        int totalScore = previousScore + 10;
+        PlayerPrefs.SetInt("Score", totalScore);
         PlayerPrefs.Save();
     }
 
