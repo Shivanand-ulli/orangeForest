@@ -37,7 +37,7 @@ public class Card : MonoBehaviour
     {
         // Initially show backface of the card
         anim = GetComponent<Animator>();
-        
+
         // Coroutine to set particle size based on card width
         StartCoroutine(AdjustParticleSize());
     }
@@ -67,6 +67,7 @@ public class Card : MonoBehaviour
         if (isFlipped)
         {
             anim.SetBool("FlipFront", isFlipped);
+            AudioManager.Instance.PlaySfx(4);
         }
         else
         {
