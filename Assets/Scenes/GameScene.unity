@@ -2310,21 +2310,21 @@ MonoBehaviour:
   gridParent: {fileID: 1314612307}
   gridLayoutGroup: {fileID: 1314612308}
   frontSprites:
-  - {fileID: 21300000, guid: 5323af33de7e5294a9ba2e38684a6b0e, type: 3}
-  - {fileID: 21300000, guid: bde8c3e23d912c844aa6f032578ef28c, type: 3}
-  - {fileID: 21300000, guid: e733aeaae5091dc44a2df1b9a02c7939, type: 3}
-  - {fileID: 21300000, guid: 484f86ec495873343bb36006b8725f67, type: 3}
-  - {fileID: 21300000, guid: 0c63b35bcea186849a4488943de83e9c, type: 3}
-  - {fileID: 21300000, guid: 7e0bf32c371eb674c8a424d7e063fbee, type: 3}
-  - {fileID: 21300000, guid: 7e0bf32c371eb674c8a424d7e063fbee, type: 3}
-  - {fileID: 21300000, guid: bde8c3e23d912c844aa6f032578ef28c, type: 3}
-  - {fileID: 21300000, guid: 0c63b35bcea186849a4488943de83e9c, type: 3}
-  - {fileID: 21300000, guid: 5323af33de7e5294a9ba2e38684a6b0e, type: 3}
-  - {fileID: 21300000, guid: 7e0bf32c371eb674c8a424d7e063fbee, type: 3}
-  - {fileID: 21300000, guid: 0c63b35bcea186849a4488943de83e9c, type: 3}
-  - {fileID: 21300000, guid: e733aeaae5091dc44a2df1b9a02c7939, type: 3}
-  - {fileID: 21300000, guid: 7e0bf32c371eb674c8a424d7e063fbee, type: 3}
-  - {fileID: 21300000, guid: 484f86ec495873343bb36006b8725f67, type: 3}
+  - {fileID: 709431462, guid: 064694655a5c51542a21e03399ba43ac, type: 3}
+  - {fileID: -216210781, guid: 064694655a5c51542a21e03399ba43ac, type: 3}
+  - {fileID: 304655111, guid: 064694655a5c51542a21e03399ba43ac, type: 3}
+  - {fileID: -718518299, guid: 064694655a5c51542a21e03399ba43ac, type: 3}
+  - {fileID: -2104278758, guid: 064694655a5c51542a21e03399ba43ac, type: 3}
+  - {fileID: -1827647658, guid: 064694655a5c51542a21e03399ba43ac, type: 3}
+  - {fileID: -860559718, guid: 064694655a5c51542a21e03399ba43ac, type: 3}
+  - {fileID: -2008240485, guid: 064694655a5c51542a21e03399ba43ac, type: 3}
+  - {fileID: 1805963567, guid: 064694655a5c51542a21e03399ba43ac, type: 3}
+  - {fileID: -231903832, guid: 064694655a5c51542a21e03399ba43ac, type: 3}
+  - {fileID: 287964553, guid: 064694655a5c51542a21e03399ba43ac, type: 3}
+  - {fileID: -930989881, guid: 064694655a5c51542a21e03399ba43ac, type: 3}
+  - {fileID: -191293715, guid: 064694655a5c51542a21e03399ba43ac, type: 3}
+  - {fileID: 313031151, guid: 064694655a5c51542a21e03399ba43ac, type: 3}
+  - {fileID: -121536964, guid: 064694655a5c51542a21e03399ba43ac, type: 3}
   frontBg: {fileID: 21300000, guid: bc58a75b8541380499a030456b83760d, type: 3}
   backBg:
   - {fileID: 21300000, guid: fb2c5580b042a9b41a98a5f62603ec0a, type: 3}
