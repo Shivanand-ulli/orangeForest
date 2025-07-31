@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -28,10 +27,11 @@ public class GridManager : MonoBehaviour
     private Card secondCard;
     private int totalMatchesRequired = 0;
     private int currentMatch = 0;
-    int totalCards;
-    int bgNum;
+    private int totalCards;
+    private int bgNum;
     private bool canReveal = true;
 
+    // Events 
     public static event Action IncreaseTurns;
     public static event Action IncreaseMatches;
     public static event Action ShowWinPanel;
@@ -46,6 +46,7 @@ public class GridManager : MonoBehaviour
 
     void Start()
     {
+        // Getting the value of col,row,bgnum
         col = PlayerPrefs.GetInt("Columns");
         row = PlayerPrefs.GetInt("Rows");
         bgNum = PlayerPrefs.GetInt("BackBg");
@@ -53,6 +54,7 @@ public class GridManager : MonoBehaviour
 
     public void GenerateGrid()
     {
+        // Adjust the layout size to fit the cards inside.
         UpdateGridLayout(row, col);
 
         // Clear existing cards
@@ -72,6 +74,7 @@ public class GridManager : MonoBehaviour
             selectedSprites.Add(frontSprites[i]);
         }
 
+        // Shuffle sprites to spawn 
         ShuffleSprites(selectedSprites);
 
         StartCoroutine(ShowCardSequentially(selectedSprites));
@@ -98,7 +101,7 @@ public class GridManager : MonoBehaviour
         }
     }
 
-
+    // Fade in animation using coroutine
     IEnumerator FadeInCard(CanvasGroup canvasGroup, float duration)
     {
 
@@ -120,16 +123,14 @@ public class GridManager : MonoBehaviour
         // Define spacing percentage (can tweak)
         float spacingPercent = 0.1f;
 
-        // Calculate cell size and spacing
+        // Calculate cell size 
         float rawCellWidth = parentWidth / (cols + (cols - 1) * spacingPercent);
         float rawCellHeight = parentHeight / (rows + (rows - 1) * spacingPercent);
         float cellSize = Mathf.Min(rawCellWidth, rawCellHeight);
 
+        // Calculate the spacing 
         float spacingX = cellSize * spacingPercent;
         float spacingY = cellSize * spacingPercent;
-
-        // Debug log for testing
-        Debug.Log($"Grid: {rows}x{cols}, Cell: {cellSize}, Spacing: {spacingX}");
 
         // Apply to GridLayout
         gridLayoutGroup.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
@@ -138,6 +139,7 @@ public class GridManager : MonoBehaviour
         gridLayoutGroup.spacing = new Vector2(spacingX, spacingY);
     }
 
+    // Check the two revealed cards
     public void CardRevealed(Card card)
     {
         if (!canReveal) return;
@@ -149,7 +151,7 @@ public class GridManager : MonoBehaviour
         {
             secondCard = card;
             canReveal = false;
-            StartCoroutine(CheckMatch());
+            StartCoroutine(CheckMatch());  // start the coroutine to check tow cards are matched or unmatched
         }
     }
 
@@ -157,9 +159,10 @@ public class GridManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
 
+        // Check both card icons are same
         bool isMatch = firstCard.frontSign.sprite == secondCard.frontSign.sprite;
 
-        if (isMatch)
+        if (isMatch)      // If same disappear both cards
         {
             firstCard.CardMatch();
             secondCard.CardMatch();
@@ -172,7 +175,7 @@ public class GridManager : MonoBehaviour
                 StartCoroutine(ShowWinWithDelay());
             }
         }
-        else
+        else              // else flipback both cards
         {
             firstCard.CardFlip();
             secondCard.CardFlip();
