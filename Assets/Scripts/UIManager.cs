@@ -87,7 +87,8 @@ public class UIManager : MonoBehaviour
         yield return new WaitForSeconds(0.7f);
         float duration = 0.5f;
         float currentTime = 0;
-
+        AudioManager.Instance.musicSource.Play();
+        AudioManager.Instance.PlayMusic(2);
         while (currentTime < duration)
         {
             currentTime += Time.deltaTime;
@@ -96,6 +97,7 @@ public class UIManager : MonoBehaviour
             Text.text = displayValue.ToString();
             yield return null;
         }
+        AudioManager.Instance.musicSource.Stop();
     }
 
     public void PlayAgain()
