@@ -29,13 +29,13 @@ public class UIManager : MonoBehaviour
     {
         GridManager.IncreaseTurns += SetTurns;
         GridManager.IncreaseMatches += SetMatches;
-        GridManager.ShowWinPanel += ShowWinPanel;
+        GridManager.ShowWinPanel += HideTopPanel;
     }
     void OnDisable()
     {
         GridManager.IncreaseTurns -= SetTurns;
         GridManager.IncreaseMatches -= SetMatches;
-        GridManager.ShowWinPanel -= ShowWinPanel;
+        GridManager.ShowWinPanel -= HideTopPanel;
     }
 
     void Start()
@@ -43,7 +43,6 @@ public class UIManager : MonoBehaviour
         turnsTxt.text = "0";
         matchesTxt.text = "0";
         scoreTxt.text = "0";
-        WinPanel.SetActive(false);
         UIAnimator = GetComponent<Animator>();
     }
 
@@ -62,17 +61,23 @@ public class UIManager : MonoBehaviour
         scoreTxt.text = score.ToString();
     }
 
-    public void ShowWinPanel()
+    public void HideTopPanel()
     {
         UIAnimator.SetBool("out", true);
+    }
+
+    public void ShowWinPanel()
+    {
+        AudioManager.Instance.PlaySfx(3);
+        CanvasGroup winPanel = WinPanel.GetComponent<CanvasGroup>();
+        winPanel.alpha = 0;
+        UIAnimator.SetBool("Appear", true);
         StartCoroutine(AnimateGameOverStatus());
     }
 
     IEnumerator AnimateGameOverStatus()
     {
-        yield return new WaitForSeconds(0.5f);
-        AudioManager.Instance.PlaySfx(3);
-        WinPanel.SetActive(true);
+        yield return new WaitForSeconds(0.2f);
         yield return StartCoroutine(AnimateTextCount(0, turns, winPanelTurns));
         yield return StartCoroutine(AnimateTextCount(0, score, winPanelScore));
     }
@@ -95,12 +100,26 @@ public class UIManager : MonoBehaviour
 
     public void PlayAgain()
     {
+        UIAnimator.SetBool("Disappear",true);
+        StartCoroutine(PlayCurrentScene());
+    }
+
+    IEnumerator PlayCurrentScene()
+    {
+        yield return new WaitForSeconds(0.1f);
         int currentScene = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentScene);
     }
 
     public void Exit()
     {
+        UIAnimator.SetBool("Disappear",true);
+        StartCoroutine(ExitGameScene());
+    }
+
+    IEnumerator ExitGameScene()
+    {
+        yield return new WaitForSeconds(0.2f);
         SceneManager.LoadScene(0);
     }
 

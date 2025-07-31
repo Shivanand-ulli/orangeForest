@@ -184,8 +184,8 @@ public class GridManager : MonoBehaviour
 
     IEnumerator ShowWinWithDelay()
     {
-        yield return new WaitForSeconds(0.5f);
         ShowWinPanel?.Invoke();
+        yield return new WaitForSeconds(0.5f);
         gameObject.SetActive(false);
     }
 
