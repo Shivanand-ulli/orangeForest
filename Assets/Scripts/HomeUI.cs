@@ -8,6 +8,7 @@ public class HomeUI : MonoBehaviour
 {
     int col;
     int row;
+    int backBG;
     public enum Mode
     {
         Easy,
@@ -47,18 +48,22 @@ public class HomeUI : MonoBehaviour
             case Mode.Easy:
                 col = 2;
                 row = 2;
+                backBG = 0;
                 break;
             case Mode.Medium:
                 col = 3;
                 row = 2;
+                backBG = 1;
                 break;
             case Mode.Hard:
                 col = 6;
                 row = 5;
+                backBG = 2;
                 break;
         }
         PlayerPrefs.SetInt("Columns", col);
         PlayerPrefs.SetInt("Rows", row);
+        PlayerPrefs.SetInt("BackBg", backBG);
     }
 
     public void PlayButtonSfx()

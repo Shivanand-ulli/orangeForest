@@ -17,7 +17,7 @@ public class GridManager : MonoBehaviour
     [Header("Card Settings")]
     public List<Sprite> frontSprites;
     public Sprite frontBg;
-    public Sprite backBg;
+    public Sprite[] backBg;
 
     [Header("Layout")]
     public int col = 6;
@@ -29,6 +29,7 @@ public class GridManager : MonoBehaviour
     private int totalMatchesRequired = 0;
     private int currentMatch = 0;
     int totalCards;
+    int bgNum;
     private bool canReveal = true;
 
     public static event Action IncreaseTurns;
@@ -47,6 +48,7 @@ public class GridManager : MonoBehaviour
     {
         col = PlayerPrefs.GetInt("Columns");
         row = PlayerPrefs.GetInt("Rows");
+        bgNum = PlayerPrefs.GetInt("BackBg");
     }
 
     public void GenerateGrid()
@@ -82,6 +84,7 @@ public class GridManager : MonoBehaviour
             GameObject cardGO = Instantiate(cardPrefab, gridParent);
             Card card = cardGO.GetComponent<Card>();
             card.SetCardFace(frontBg, sprites[i]);
+            card.SetBackBg(backBg[bgNum]);
             createdCards.Add(card);
 
             // Add and setup CanvasGroup

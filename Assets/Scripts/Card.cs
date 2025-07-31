@@ -49,6 +49,11 @@ public class Card : MonoBehaviour
         frontSign.sprite = signSprite;
     }
 
+    public void SetBackBg(Sprite backBg)
+    {
+        backImage.sprite = backBg;
+    }
+
     // Button listener func to the flip card
     public void OnCardClik()
     {

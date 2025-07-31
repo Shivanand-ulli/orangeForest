@@ -2326,7 +2326,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 7e0bf32c371eb674c8a424d7e063fbee, type: 3}
   - {fileID: 21300000, guid: 484f86ec495873343bb36006b8725f67, type: 3}
   frontBg: {fileID: 21300000, guid: bc58a75b8541380499a030456b83760d, type: 3}
-  backBg: {fileID: 21300000, guid: fb2c5580b042a9b41a98a5f62603ec0a, type: 3}
+  backBg:
+  - {fileID: 21300000, guid: fb2c5580b042a9b41a98a5f62603ec0a, type: 3}
+  - {fileID: 21300000, guid: bec90de09ce6253408405a5e451869e1, type: 3}
+  - {fileID: 21300000, guid: 06c60ec4c33a4c14097da851141b6ba5, type: 3}
   col: 2
   row: 2
 --- !u!1 &1415136157
