@@ -27,12 +27,14 @@ public class UIManager : MonoBehaviour
 
     void OnEnable()
     {
+        // Subscribe to the events
         GridManager.IncreaseTurns += SetTurns;
         GridManager.IncreaseMatches += SetMatches;
         GridManager.ShowWinPanel += HideTopPanel;
     }
     void OnDisable()
     {
+        // Unsubscribe to the events
         GridManager.IncreaseTurns -= SetTurns;
         GridManager.IncreaseMatches -= SetMatches;
         GridManager.ShowWinPanel -= HideTopPanel;
@@ -46,12 +48,14 @@ public class UIManager : MonoBehaviour
         UIAnimator = GetComponent<Animator>();
     }
 
+    // Set the turns of the cards
     public void SetTurns()
     {
         turns++;
         turnsTxt.text = turns.ToString();
     }
 
+    // Set the matches and score of the cards
     public void SetMatches()
     {
         matches++;
@@ -66,18 +70,20 @@ public class UIManager : MonoBehaviour
         PlayerPrefs.Save();
     }
 
+    // Hide the HUD
     public void HideTopPanel()
     {
         UIAnimator.SetBool("out", true);
     }
 
+    // Show the win feedback panel
     public void ShowWinPanel()
     {
         AudioManager.Instance.PlaySfx(3);
         CanvasGroup winPanel = WinPanel.GetComponent<CanvasGroup>();
         winPanel.alpha = 0;
         UIAnimator.SetBool("Appear", true);
-        StartCoroutine(AnimateGameOverStatus());
+        StartCoroutine(AnimateGameOverStatus()); 
     }
 
     IEnumerator AnimateGameOverStatus()
@@ -87,6 +93,7 @@ public class UIManager : MonoBehaviour
         yield return StartCoroutine(AnimateTextCount(0, score, winPanelScore));
     }
 
+    // Animate the text num count
     IEnumerator AnimateTextCount(int startValue, int endValue, TextMeshProUGUI Text)
     {
         yield return new WaitForSeconds(0.7f);
@@ -105,9 +112,10 @@ public class UIManager : MonoBehaviour
         AudioManager.Instance.musicSource.Stop();
     }
 
+    // Play again current scene
     public void PlayAgain()
     {
-        UIAnimator.SetBool("Disappear",true);
+        UIAnimator.SetBool("Disappear", true); // Play Disappear animation
         StartCoroutine(PlayCurrentScene());
     }
 
@@ -118,9 +126,10 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene(currentScene);
     }
 
+    // Exit to home menu
     public void Exit()
     {
-        UIAnimator.SetBool("Disappear",true);
+        UIAnimator.SetBool("Disappear", true); // Play Disappear animation 
         StartCoroutine(ExitGameScene());
     }
 
@@ -130,6 +139,7 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+    // Play button sfx
     public void PlayButtonSfx()
     {
         AudioManager.Instance.PlaySfx(2);
