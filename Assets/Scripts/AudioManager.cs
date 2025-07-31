@@ -26,6 +26,7 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
     }
 
+    // Play Music 
     public void PlayMusic(int id)
     {
         if (musicSource.isPlaying)
@@ -37,6 +38,7 @@ public class AudioManager : MonoBehaviour
         musicSource.Play();
     }
 
+    // Play Sfx
     public void PlaySfx(int id)
     {
         if (id >= 0 && id < sfxClips.Length)
@@ -45,6 +47,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    // Toggle music audio mute
     public void ToggleMusic(bool isMuted)
     {
         musicSource.mute = isMuted;
@@ -52,6 +55,7 @@ public class AudioManager : MonoBehaviour
         PlayerPrefs.Save();
     }
 
+    // Toggle sfx audio mute
     public void ToggleSfx(bool isMuted)
     {
         sfxSource.mute = isMuted;
@@ -59,7 +63,7 @@ public class AudioManager : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    public static bool GetMusicState() => PlayerPrefs.GetInt(MUSIC_MUTE_KEY, 0) == 1;
-    public static bool GetSfxState() => PlayerPrefs.GetInt(Sfx_MUTE_KEY, 0) == 1;
+    public static bool GetMusicState() => PlayerPrefs.GetInt(MUSIC_MUTE_KEY, 0) == 1; // Get the Music state
+    public static bool GetSfxState() => PlayerPrefs.GetInt(Sfx_MUTE_KEY, 0) == 1; // Get the Sfx state
 
 }
