@@ -635,7 +635,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: SCORE
+  m_text: 'SCORE:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8a2b411b9e735f649ab3ff1749323473, type: 2}
   m_sharedMaterial: {fileID: 7830154440053153736, guid: 8a2b411b9e735f649ab3ff1749323473, type: 2}
@@ -1063,7 +1063,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0234576
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8a2b411b9e735f649ab3ff1749323473, type: 2}
   m_sharedMaterial: {fileID: 7830154440053153736, guid: 8a2b411b9e735f649ab3ff1749323473, type: 2}
@@ -1783,6 +1783,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e332bfb319c3fe4c9845d4dd7abd9b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreTxt: {fileID: 706284039}
 --- !u!1 &1487580109
 GameObject:
   m_ObjectHideFlags: 0
@@ -3019,7 +3020,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0

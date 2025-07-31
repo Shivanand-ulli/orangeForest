@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +10,8 @@ public class HomeUI : MonoBehaviour
     int col;
     int row;
     int backBG;
+    int score = 0;
+    public TextMeshProUGUI scoreTxt;
     public enum Mode
     {
         Easy,
@@ -18,7 +21,10 @@ public class HomeUI : MonoBehaviour
 
     void Start()
     {
-        AudioManager.Instance.PlayMusic(0);   
+        AudioManager.Instance.PlayMusic(0);
+        int savedScore = PlayerPrefs.GetInt("Score");
+        score += savedScore;
+        scoreTxt.text = score.ToString(); 
     }
 
     public void GameScene()

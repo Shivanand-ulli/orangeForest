@@ -59,6 +59,8 @@ public class UIManager : MonoBehaviour
 
         score = matches * 10;
         scoreTxt.text = score.ToString();
+        PlayerPrefs.SetInt("Score", score);
+        PlayerPrefs.Save();
     }
 
     public void HideTopPanel()
